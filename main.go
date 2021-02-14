@@ -43,6 +43,7 @@ type NotifyConfig struct {
 	OnNewMailPost string   `json:"onNewMailPost,omitempty"`
 	Debug         bool     `json:"-"`
 	Boxes         []string `json:"boxes"`
+	GmailOauth    bool     `json:"gmailOauth"`
 }
 
 func main() {
@@ -62,8 +63,8 @@ func main() {
 	if err != nil {
 		logrus.Fatalf("Can't parse the configuration: %s", err)
 	}
-	conf.Debug = *debug
 
+	conf.Debug = *debug
 	if *list {
 		client, cErr := newClient(conf)
 		if cErr != nil {
